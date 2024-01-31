@@ -1,0 +1,26 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          messaging-client-oidc:
+            provider: spring
+            client-id: ${CLIENT_ID:client-id}
+            client-secret: ${CLIENT_SECRET:client-secret}
+            client-name: ${CLIENT_NAME:client-name}
+            authorization-grant-type: authorization_code
+            redirect-uri: ${REDIRECT_URL}
+            scope: openid, profile
+        provider:
+          spring:
+            issuer-uri: ${ISSUER_URL}
+      resourceserver:
+        jwt:
+          issuer-uri: ${ISSUER_URL}
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: TRACE
+    org.springframework.security: TRACE
+    org.springframework.security.oauth2: TRACE
